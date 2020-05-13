@@ -1,0 +1,11 @@
+.elements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 36px;
+}
+@media screen and (max-width: 700px) {
+    .elements {
+        margin-top: 16px;
+    }
+}

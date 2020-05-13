@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Места России</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="root">
+    <header class="header">
+        <img class="header__logo" src="./image/logo.svg" alt="Места России">
+        <img class="header__line" src="./image/line.png" alt="Линия">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__info">
+                <img class="profile__avatar" src="./image/jac_iv_kysto.jpg" alt="Аватар">
+                <div class="profile__cell">
+                    <div class="profile__info-name">
+                        <h1 class="profile__info-author">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button"></button>
+                    </div>
+                    <p class="profile__info-profession">Исследователь океана</p>
+                </div>
+            </div>
+            <button type="button" class="profile__add-button"></button>
+        </section>
+
+        <section class="elements">
+            <div class="element__group">
+                <img class="element__img" src="./image/Karachayevsk.jpg" alt="Карачаевск">
+                <div class="element__group_cell">
+                    <p class="element__title">Карачаевск</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__img" src="./image/gora_elbrus.jpg" alt="Гора Эльбрус">
+                <div class="element__group_cell">
+                    <p class="element__title">Гора Эльбрус</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__img" src="./image/dombai.jpg" alt="Домбай">
+                <div class="element__group_cell">
+                    <p class="element__title">Домбай</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__img" src="./image/mount_elbrus.jpg" alt="Гора Эльбрус">
+                <div class="element__group_cell">
+                    <p class="element__title">Гора Эльбрус</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__img" src="./image/dombai.jpg" alt="Домбай">
+                <div class="element__group_cell">
+                    <p class="element__title">Домбай</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__img" src="image/Karachayevsk.jpg" alt="Карачаево-Черкессия">
+                <div class="element__group_cell">
+                    <p class="element__title">Карачаево-Ч...</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+        </section>
+        <section class="popup">
+            <form class="popup__container">
+                <button type="button" class="popup__close"></button>
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <input type="text" placeholder="Имя" name="Author" class="popup__author" id="author">
+                <input type="text" placeholder="Профессия" name="Profession" class="popup__profession" id="profession">
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__copyright">&#169 2020 Mesto Russia</div>
+    </footer>
+    <script src="./script/script.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,5 @@
 .profile__info-name {
     display: flex;
-    flex-wrap: wrap;
-    flex-basis: 346px;
     align-items: baseline;
 }
 @media screen and (max-width: 700px) {

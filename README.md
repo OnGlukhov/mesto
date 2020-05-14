@@ -7,10 +7,11 @@
 * адаптивная верстка
 * flexbox-вёрстка
 * БЭМ
+* grid
 
 **Применина новая технология JS**
 * Открытие закрытие формы
 * Редактирование данных пользователя
 
 * [Ссылка на готовый проект]
-(https://oleg-glukhov1.github.io/mesto/index.html)
+(https://oleg-glukhov1.github.io/mesto/)

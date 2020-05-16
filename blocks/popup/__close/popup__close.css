@@ -9,6 +9,7 @@
     border: none;
     background-position: center;
     cursor: pointer;
+    
 }
 .popup__close:hover {
     opacity: 0.6;

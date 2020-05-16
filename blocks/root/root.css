@@ -9,7 +9,7 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
-    min-width: 320px;
+    min-width: 282px;
     min-height: 500px;
     max-width: calc(100% - 32px);
 }

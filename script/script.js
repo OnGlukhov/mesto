@@ -1,7 +1,7 @@
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
-const popupAuthor = document.querySelector(".popup__author");
-const popupProfession = document.querySelector(".popup__profession");
+const popupAuthor = document.querySelector(".popup__text_type_author");
+const popupProfession = document.querySelector(".popup__text_type_profession");
 const profileAuthor = document.querySelector(".profile__info-author");
 const profileProfession = document.querySelector(".profile__info-profession");
 // const popupOpened = document.querySelector(".popup_opened");

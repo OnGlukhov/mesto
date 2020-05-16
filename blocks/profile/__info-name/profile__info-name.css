@@ -1,6 +1,8 @@
 .profile__info-name {
     display: flex;
     align-items: baseline;
+    margin: 19px auto 0;
+    
 }
 @media screen and (max-width: 700px) {
     .profile__info-name {

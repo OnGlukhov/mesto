@@ -5,7 +5,6 @@
 @import url(./__profession/popup__profession.css);
 @import url(./__title/popup__title.css);
 @import url(./__close/popup__close.css);
-@import url(./_opened/popup_opened.css);
 
 .popup {
     position: fixed;
@@ -17,5 +16,6 @@
     justify-content: center;
     align-items: center;
     display: none;
+    padding: 0;
   }
   

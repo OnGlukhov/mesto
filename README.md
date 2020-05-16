@@ -13,4 +13,4 @@
 * Редактирование данных пользователя
 
 * [Ссылка на готовый проект]
-(https://oleg-glukhov1.github.io/mesto/index.html)
+(https://oleg-glukhov1.github.io/mesto/)

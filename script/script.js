@@ -4,7 +4,7 @@ const popupAuthor = document.querySelector(".popup__author");
 const popupProfession = document.querySelector(".popup__profession");
 const profileAuthor = document.querySelector(".profile__info-author");
 const profileProfession = document.querySelector(".profile__info-profession");
-const popupOpened = document.querySelector(".popup_opened");
+// const popupOpened = document.querySelector(".popup_opened");
 const popupClose = document.querySelector(".popup__close");
 const formElement = document.querySelector(".popup__container");
 
@@ -18,6 +18,7 @@ function editProfile() {
 // Закрытие окна Popup
 function closePopup() {
   popup.classList.remove('popup_opened');
+
   
 }
 // Изменение автора и профессии с сохранением

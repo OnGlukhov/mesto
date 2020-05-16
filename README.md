@@ -16,6 +16,4 @@
 * [Ссылка на готовый проект]
 <<<<<<< HEAD
 (https://oleg-glukhov1.github.io/mesto/)
-=======
-(https://oleg-glukhov1.github.io/mesto/)
->>>>>>> f265652326818d869be0103b2d4aa731a8371a7d
+

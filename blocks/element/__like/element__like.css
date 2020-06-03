@@ -8,6 +8,7 @@
     background-size: contain;
     border: 1px solid #fff;
     padding: 0;
+    cursor: pointer;
     
 }
 .element__like:hover {

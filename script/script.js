@@ -78,9 +78,6 @@ function editFormSubmitHandler(evt) {
 
   closePopup(editProfile);
 }
-profileEditButton.addEventListener('click', () => openPopup(editProfile));
-popupCloseEdit.addEventListener('click', () => closePopup(editProfile));
-formProfileEdit.addEventListener('submit', editFormSubmitHandler);
 
 // Add
 
@@ -114,9 +111,7 @@ function manageCard(name, link) {
     popupCaption.textContent = title.textContent;
     openPopup(popupZoom);
   });
-  // Закрытие картинки
-    popupCloseImg.addEventListener('click', () => closePopup(popupZoom));
-
+    
   elements.prepend(element);
 }
 
@@ -133,8 +128,13 @@ function addFormSubmitHandler(evt) {
   popupPlace.value = "";
   popupUrl.value = "";
 }
+
+popupCloseImg.addEventListener('click', () => closePopup(popupZoom));
 profileAddButton.addEventListener('click', () => openPopup(addElement));
 popupCloseAdd.addEventListener('click', () => closePopup(addElement));
 formProfileAdd.addEventListener('submit', addFormSubmitHandler);
+profileEditButton.addEventListener('click', () => openPopup(editProfile));
+popupCloseEdit.addEventListener('click', () => closePopup(editProfile));
+formProfileEdit.addEventListener('submit', editFormSubmitHandler);
 
 

@@ -1,3 +1,4 @@
+const popupOverlay = document.querySelectorAll('.popup');
 // edit
 const profileEditButton = document.querySelector('.profile__edit-button');
 const editProfile = document.querySelector('.popup_type_edit');
@@ -56,16 +57,22 @@ const initialCards = [
 // Открытие popup и взятие данных
 function openPopup(mod) {
   mod.classList.add('popup_opened');
+  // Нажатие кнопки
+  document.addEventListener('keydown', closeEsc);
 
   if (mod === editProfile) {
     // Значение из профиля
     popupAuthor.value = profileAuthor.textContent;
     popupProfession.value = profileProfession.textContent;
+
+    
   }
 }
 // Закрытие окна Popup
 function closePopup(mod) {
   mod.classList.remove('popup_opened');
+  // Нажатие кнопки
+  document.removeEventListener('keydown', closeEsc);
 }
 // Изменение автора и профессии с сохранением
 function editFormSubmitHandler(evt) {
@@ -128,6 +135,18 @@ function addFormSubmitHandler(evt) {
   popupPlace.value = "";
   popupUrl.value = "";
 }
+// Закрытие попапа кликом на Overlay
+function closeOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+}
+// Закрытие попапа кнопкой
+function closeEsc(evt) {
+  if (evt.keyCode === 27) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
 
 popupCloseImg.addEventListener('click', () => closePopup(popupZoom));
 profileAddButton.addEventListener('click', () => openPopup(addElement));
@@ -136,5 +155,5 @@ formProfileAdd.addEventListener('submit', addFormSubmitHandler);
 profileEditButton.addEventListener('click', () => openPopup(editProfile));
 popupCloseEdit.addEventListener('click', () => closePopup(editProfile));
 formProfileEdit.addEventListener('submit', editFormSubmitHandler);
-
+document.addEventListener('click', closeOverlay);
 

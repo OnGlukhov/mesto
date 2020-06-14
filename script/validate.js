@@ -7,14 +7,14 @@ function enableValidation(options) {
         const submitButton = formElement.querySelector(options.submitButtonSelector);
 
         inputElements.forEach(input => {
-            input.addEventListener('input', evt => manageInput(evt, options.inputErrorClass))
+            input.addEventListener('input', evt => handleInputError(evt, options.inputErrorClass))
         });
 
-        formElement.addEventListener('input', () => manageFormInput(formElement, submitButton, options.inactiveButtonClass))
+        formElement.addEventListener('input', () => toggleButtonState(formElement, submitButton, options.inactiveButtonClass))
     });
 }
 // Добавление/Удаление класса  в зависимости от валидности
-function manageInput(evt, errCls) {
+function handleInputError(evt, errCls) {
     const input = evt.target;
     const error = document.querySelector(`#${input.id}-error`);
     const isInputValid = input.checkValidity();
@@ -30,18 +30,18 @@ function manageInput(evt, errCls) {
 }
 
 // Включение выключение кнопки 
-function manageFormInput(formElement, submitButton, inactiveButtonClass) {
+function toggleButtonState(formElement, submitButton, inactiveButtonClass) {
     const formNotValid = !formElement.checkValidity();
     submitButton.disabled = formNotValid;
-    submitButton.classList.toggle(inactiveButtonClass,formNotValid);
+    submitButton.classList.toggle(inactiveButtonClass, formNotValid);
 }
 
 // Включение вылидации
-  enableValidation({
+enableValidation({
     formSelector: '.popup__container',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__text_error',
     errorClass: 'popup__error_visible'
-  });
+});

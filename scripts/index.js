@@ -1,3 +1,5 @@
+import { initialCards } from "./initialCards";
+// import { Card } from './Card';
 // edit
 const profileEditButton = document.querySelector('.profile__edit-button');
 const editProfile = document.querySelector('.popup_type_edit');
@@ -21,33 +23,8 @@ const popupImg = document.querySelector('.popup__photo');
 const popupCaption = document.querySelector('.popup__caption');
 // Елементы
 const elements = document.querySelector('.elements');
-const template = document.querySelector('#template').content;
-// Массив
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+
+
 
 
 
@@ -87,6 +64,7 @@ function editFormSubmitHandler(evt) {
 // Add
 
 // Добавление карточек из массива + добавление новых карточек
+
 function addCard(name, link) {
     const element = template.cloneNode(true);
     const title = element.querySelector('.element__title');
@@ -120,8 +98,9 @@ function addCard(name, link) {
     elements.prepend(element);
 }
 
-initialCards.forEach(function(item) {
+initialCards.forEach((item) => {
     addCard(item.name, item.link);
+
 });
 
 //Add

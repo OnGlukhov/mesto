@@ -12,6 +12,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    outline: none;
 }
 
 .element__delete:hover {

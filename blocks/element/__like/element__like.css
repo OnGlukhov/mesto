@@ -9,6 +9,7 @@
     border: 1px solid #fff;
     padding: 0;
     cursor: pointer;
+    outline: none;
 }
 
 .element__like:hover {

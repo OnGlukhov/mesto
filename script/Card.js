@@ -1,3 +1,6 @@
+const popupImg = document.querySelector('.popup__photo');
+const popupCaption = document.querySelector('.popup__caption');
+const popupZoom = document.querySelector('.popup__type_img');
 export class Card {
     // Конструктор карточки
     constructor(data, cardSelector) {
@@ -24,12 +27,29 @@ export class Card {
 
     // Удаление карточки
     _deleteCard() {
-            this._element.closest('.element').remove();
+        this._element.closest('.element').remove();
 
+    }
+
+
+    _keyPressed(evt) {
+            if (evt.key === 'Escape') {
+                popupZoom.classList.remove('popup_opened');
+
+                // Удалям по нажатию на клавишу
+                document.removeEventListener('keydown', this._pressedСontext);
+            }
         }
         // Увеличение картинки
     _zoomImage() {
-        zoomImage({ name: this._name, link: this._link });
+        popupCaption.textContent = this._name;
+        popupImg.src = this._link;
+        popupImg.alt = this._name;
+        popupZoom.classList.add('popup_opened');
+
+        this._pressedСontext = this._keyPressed.bind(this);
+        // Прикрепляем обработчик
+        document.addEventListener('keydown', this._pressedСontext);
     }
 
     // Слушатели

@@ -20,8 +20,6 @@ const popupUrl = document.querySelector('.popup__text_type_url');
 // Zoom
 const popupZoom = document.querySelector('.popup__type_img');
 const popupCloseImg = document.querySelector('.popup__close_img');
-const popupImg = document.querySelector('.popup__photo');
-const popupCaption = document.querySelector('.popup__caption');
 // Елементы
 const elements = document.querySelector('.elements');
 const template = document.querySelector('#template').content;
@@ -62,14 +60,6 @@ function editFormSubmitHandler(evt) {
     profileProfession.textContent = newJob;
 
     closePopup(editProfile);
-}
-
-// Увеличение изображения
-function zoomImage({ name, link }) {
-    popupCaption.textContent = name;
-    popupImg.src = link;
-    popupImg.alt = name;
-    openPopup(popupZoom);
 }
 
 // Карточки из массива

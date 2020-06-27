@@ -22,28 +22,26 @@ const popupZoom = document.querySelector('.popup__type_img');
 const popupCloseImg = document.querySelector('.popup__close_img');
 // Елементы
 const elements = document.querySelector('.elements');
-const template = document.querySelector('#template').content;
 
-// Открытие popup и взятие данных
+// Валидация
+const editProfileValidation = new FormValidator(options, editProfile);
+editProfileValidation.enableValidation();
+const addElementValidation = new FormValidator(options, addElement);
+addElementValidation.enableValidation();
+
+// Открытие popup
 function openPopup(mod) {
     mod.classList.add('popup_opened');
     // Нажатие кнопки
     document.addEventListener('keydown', closeEsc);
-
-
-    if (mod === editProfile) {
-        // Значение из профиля
-        popupAuthor.value = profileAuthor.textContent;
-        popupProfession.value = profileProfession.textContent;
-
-        const editProfileValidation = new FormValidator(options, editProfile);
-        editProfileValidation.enableValidation();
-    }
-    if (mod === addElement) {
-        const addElementValidation = new FormValidator(options, addElement);
-        addElementValidation.enableValidation();
-    }
 }
+
+// Значение из профиля
+function valueProfile() {
+    popupAuthor.value = profileAuthor.textContent;
+    popupProfession.value = profileProfession.textContent;
+}
+
 // Закрытие окна Popup
 function closePopup(mod) {
     mod.classList.remove('popup_opened');
@@ -63,12 +61,14 @@ function editFormSubmitHandler(evt) {
 }
 
 // Карточки из массива
-initialCards.forEach((item) => {
+function addCard(item) {
 
     const card = new Card(item, '.template');
     const cardElement = card.generateCard();
     elements.prepend(cardElement);
-})
+}
+
+initialCards.forEach(addCard);
 
 //Добавление карточки из формы
 function addFormSubmitHandler(evt) {
@@ -81,18 +81,24 @@ function addFormSubmitHandler(evt) {
     elements.prepend(cardElement);
     closePopup(addElement);
 }
+
 // Закрытие попапа кликом на Overlay
 function closeOverlay(evt) {
     if (evt.target.classList.contains('popup')) {
         closePopup(evt.target);
     }
 }
+
 // Закрытие попапа кнопкой
 function closeEsc(evt) {
     if (evt.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'));
     }
 }
+
+profileEditButton.addEventListener('click', () => {
+    valueProfile();
+});
 
 popupCloseImg.addEventListener('click', () => closePopup(popupZoom));
 profileAddButton.addEventListener('click', () => openPopup(addElement));
@@ -101,4 +107,8 @@ formProfileAdd.addEventListener('submit', addFormSubmitHandler);
 profileEditButton.addEventListener('click', () => openPopup(editProfile));
 popupCloseEdit.addEventListener('click', () => closePopup(editProfile));
 formProfileEdit.addEventListener('submit', editFormSubmitHandler);
-document.addEventListener('click', closeOverlay);
+
+// Закрытие попапа по клику на Overlay
+editProfile.addEventListener('mousedown', closeOverlay);
+addElement.addEventListener('mousedown', closeOverlay);
+popupZoom.addEventListener('mousedown', closeOverlay);

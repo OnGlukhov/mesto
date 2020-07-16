@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Места России</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="root">
@@ -33,9 +32,9 @@
                 <form name="PopUp" class="popup__container popup__container_type_edit">
                     <button type="button" class="popup__close popup__close_type_edit"></button>
                     <h3 class="popup__title">Редактировать профиль</h3>
-                    <input type="text" placeholder="Имя" name="Author" class="popup__text popup__text_type_author" minlength="2" maxlength="40" required id="author-card">
+                    <input type="text" placeholder="Имя" name="name" class="popup__text popup__text_type_author" minlength="2" maxlength="40" required id="author-card">
                     <span id="author-card-error" class="error"></span>
-                    <input type="text" placeholder="Профессия" name="Profession" class="popup__text popup__text_type_profession" minlength="2" maxlength="200" required id="profession-card">
+                    <input type="text" placeholder="Профессия" name="job" class="popup__text popup__text_type_profession" minlength="2" maxlength="200" required id="profession-card">
                     <span id="profession-card-error" class="error"></span>
                     <button class="popup__button popup__button_type_edit" type="submit">Сохранить</button>
                 </form>
@@ -75,10 +74,6 @@
             </div>
         </div>
     </template>
-    <script type="module" src="./script/Card.js"></script>
-    <script type="module" src="./script/FormValidator.js"></script>
-    <script type="module" src="./script/initialCards.js"></script>
-    <script type="module" src="./script/index.js"></script>
 </body>
 
 </html>

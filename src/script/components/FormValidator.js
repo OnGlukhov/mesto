@@ -1,11 +1,5 @@
-const options = {
-    formSelector: '.popup__container',
-    inputSelector: '.popup__text',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__text_error',
-    errorClass: 'popup__error_visible',
-};
+
+import {options} from '../utils/constants.js'
 class FormValidator {
     // Конструктор валидации
     constructor(data, formValidation) {
@@ -20,7 +14,7 @@ class FormValidator {
 
     };
 
-    // Включение валидации
+    // Включение валидацииz
     enableValidation() {
         this._setEventListeners()
     }

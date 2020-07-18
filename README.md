@@ -19,4 +19,4 @@
 # Проект №7: *Произведен рефакториг JS по парадигме программирования ООП*
 
 * [Ссылка на готовый проект]
-(https://oleg-glukhov1.github.io/mesto/docs/index.html)
+(https://oleg-glukhov1.github.io/mesto/docs/index)

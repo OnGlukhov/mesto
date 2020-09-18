@@ -1,5 +1,4 @@
-
-import {options} from '../utils/constants.js'
+import { options } from '../utils/constants.js'
 class FormValidator {
     // Конструктор валидации
     constructor(data, formValidation) {

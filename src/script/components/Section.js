@@ -9,7 +9,7 @@ export default class Section {
         this._сontainer.prepend(element)
     }
     renderer() {
-        this._items.forEach(item => {
+        this._items.reverse().forEach(item => {
             this._renderer(item)
         })
     }

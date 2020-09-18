@@ -3,9 +3,10 @@
 // const popupZoom = document.querySelector('.popup__type_img');
 export class Card {
     // Конструктор карточки
-    constructor(data, cardSelector, userData, { handleCardClick, handleRemoveCard, handleCardLike }) {
+    constructor(data, cardSelector, userData, userDataID, { handleCardClick, handleRemoveCard, handleCardLike }) {
         this._data = data;
         this._userData = userData;
+        this._userID = userDataID;
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;

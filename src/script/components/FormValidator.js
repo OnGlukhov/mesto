@@ -7,7 +7,7 @@ class FormValidator {
             this._inputElements = Array.from(formValidation.querySelectorAll(data.inputSelector));
             this._submitButton = formValidation.querySelector(data.submitButtonSelector);
         }
-        // добавление ошибки
+        // добавление ошибки 
     _addInputError(input) {
         if (!input.checkValidity()) {
             const errorElement = this._formValidation.querySelector(`#${input.id}-error`);
@@ -15,7 +15,7 @@ class FormValidator {
             errorElement.textContent = input.validationMessage;
         }
     };
-    // удаление ошибки
+    // удаление ошибки 
     _removeInputError(input) {
         const errorElement = this._formValidation.querySelector(`#${input.id}-error`);
         input.classList.remove(this._inputErrorClass);
@@ -29,13 +29,13 @@ class FormValidator {
                 this._removeInputError(input);
             }
         }
-        // управление кнопкой
+        // управление кнопкой 
     _toggleButtonState() {
             const formNotValid = !this._formElement.checkValidity();
             this._submitButton.disabled = formNotValid;
             this._submitButton.classList.toggle(this._inactiveButtonClass, formNotValid);
         }
-        // включение валидации
+        // включение валидации 
     enableValidation() {
             this._inputElements.forEach((input) => {
                 input.addEventListener('input', () => {
@@ -44,7 +44,8 @@ class FormValidator {
                 });
             });
         }
-        // Очистка полей инпута
+        // Очистка полей инпута 
+
     clear() {
         this._inputElements.forEach((input) => {
             this._removeInputError(input);

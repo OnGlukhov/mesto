@@ -33,8 +33,11 @@ export default class Popup {
 
     }
     buttonName(buttonName) {
+
         const button = this._popup.querySelector('.popup__button');
-        button.textContent = buttonName;
+        if (this._popup.contains(button)) {
+            button.textContent = buttonName;
+        }
 
     }
 

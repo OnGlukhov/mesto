@@ -39,40 +39,42 @@ export default class Api {
         }
         // Редактирование профиля
     patchProfileInfo(profileNewInfo) {
-        return fetch(`${this.baseUrl}/users/me`, {
-                method: 'PATCH',
-                headers: this.headers,
-                body: JSON.stringify({
-                    name: profileNewInfo.popup__text_type_author,
-                    about: profileNewInfo.popup__text_type_profession
+            return fetch(`${this.baseUrl}/users/me`, {
+                    method: 'PATCH',
+                    headers: this.headers,
+                    body: JSON.stringify({
+                        name: profileNewInfo.popup__text_type_author,
+                        about: profileNewInfo.popup__text_type_profession
+                    })
                 })
-            })
-            .then(res => this._checkPromise(res));
-    }
+                .then(res => this._checkPromise(res));
+        }
+        // Удаление карты
     removeCard(cardId) {
-        return fetch(`${this.baseUrl}/cards/${cardId}`, {
-                method: 'DELETE',
-                headers: this.headers
-            })
-            .then(res => this._checkPromise(res));
-    }
-
+            return fetch(`${this.baseUrl}/cards/${cardId}`, {
+                    method: 'DELETE',
+                    headers: this.headers
+                })
+                .then(res => this._checkPromise(res));
+        }
+        // Добаление лайка
     addLike(cardId) {
-        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-                method: 'PUT',
-                headers: this.headers
-            })
-            .then(res => this._checkPromise(res));
-    }
-
+            return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+                    method: 'PUT',
+                    headers: this.headers
+                })
+                .then(res => this._checkPromise(res));
+        }
+        // Удаление лайка
     removeLike(cardId) {
-        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-                method: 'DELETE',
-                headers: this.headers
-            })
-            .then(res => this._checkPromise(res));
-    }
-    addAvatar(avatar) { // PATCH - запрос на обновление аватарки
+            return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+                    method: 'DELETE',
+                    headers: this.headers
+                })
+                .then(res => this._checkPromise(res));
+        }
+        // Запрос на обновление аватарки
+    addAvatar(avatar) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
                 method: 'PATCH',
                 headers: this.headers,

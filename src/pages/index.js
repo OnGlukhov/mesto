@@ -42,18 +42,30 @@ const api = new Api({
     }
 })
 
+const openDeletePopup = function(card, cardClass) {
+    popupDelete.setCard(card, cardClass);
 
-// Экземпляр класса секции
-const popupDelete = new PopupWithRemove('.popup_type_delete', ({ cardElement, cardId }) => {
-    api.removeCard(cardId)
+    popupDelete.open();
+    popupDelete.buttonName('Да');
+}
+const popupDelete = new PopupWithRemove({
+    handleDeleteButton: (card, cardClass) => {
+        cardDelete(card, cardClass);
+    }
+}, '.popup_type_delete');
+
+
+const cardDelete = function(cardId, cardClass) {
+    api.removeCard(cardId._id)
         .then(() => {
-            popupDelete.buttonName('Удаление...');
-            cardElement.remove();
-            popupDelete.close()
+            cardClass.handleDeleteElement();
+            popupDelete.close();
         })
         .catch((err) => console.error(err))
-})
-popupDelete.setEventListeners()
+        .finally(() => {
+            popupDelete.buttonName('Удаление...');
+        });
+}
 
 // Сборка карт
 function placeCard(data, userData, userDataID) {
@@ -61,9 +73,8 @@ function placeCard(data, userData, userDataID) {
         handleCardClick: () => {
             popupPicture.open(data)
         },
-        handleRemoveCard: ({ cardElement, cardId }) => {
-            popupDelete.buttonName('Да');
-            popupDelete.open({ cardElement, cardId })
+        handleRemoveCard: () => {
+            openDeletePopup(data, card)
         },
         handleCardLike: ({ cardId }) => {
             if (card.isLiked()) {
@@ -77,7 +88,8 @@ function placeCard(data, userData, userDataID) {
                     .then((data) => {
                         card.сheckLike(data)
                     })
-                    .catch((err) => console.error(err));
+                    .catch((err) => console.error(err))
+
             }
         }
     })
@@ -94,11 +106,14 @@ const avatarPopup = new PopupWithForm({
                 avatarPopup.close();
             })
             .catch((err) => console.error(err))
+            .finally(() => {
+                avatarPopup.buttonName('Загрузка...');
+            })
     }
 })
 avatarPopup.setEventListeners()
 avatarButton.addEventListener('click', () => {
-    avatarPopup.buttonName('Сохранить');
+    avatarPopup.buttonName('Сохранить')
     avatarPopup.open();
     avatarValidation.clear()
 })
@@ -113,10 +128,12 @@ const editPop = new PopupWithForm({
         api.patchProfileInfo(data)
             .then((data) => {
                 userInfo.setUserInfo(data)
-
                 editPop.close();
             })
             .catch((err) => console.error(err))
+            .finally(() => {
+                editPop.buttonName('Сохранение...');
+            })
     }
 });
 
@@ -149,22 +166,23 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         const addPopup = new PopupWithForm({
             popupSelector: ".popup_type_add",
             formSubmit: (data) => {
-
                 addPopup.buttonName('Загрузка...');
-
                 api.newCardAdd(data)
                     .then(data => {
-                        const newcard = placeCard(data, userData, userData._id);
-                        cardList.addItem(newcard);
+                        const card = placeCard(data, userData, userData._id);
+                        cardList.addItem(card);
                         addPopup.close();
                     })
                     .catch((err) => console.error(err))
+                    .finally(() => {
+                        addPopup.buttonName('Загрузка...');
+                    })
             }
         });
         addPopup.setEventListeners();
         profileAddButton.addEventListener("click", () => {
-            addPopup.open();
             addPopup.buttonName('Сохранить');
+            addPopup.open();
             addElementValidation.clear()
         });
 

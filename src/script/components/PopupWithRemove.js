@@ -1,18 +1,16 @@
 import Popup from './Popup.js';
 export default class PopupWithRemove extends Popup {
-    constructor(popupSelector, handleDeleteButton) {
-        super(popupSelector)
+    constructor({ handleDeleteButton }, popupSelector) {
+        super(popupSelector);
         this._handleDeleteButton = handleDeleteButton;
+        this._submitEvent = evt => {
+            evt.preventDefault();
+            this._handleDeleteButton(this._card, this._cardClass);
+        };
+        this._popup.querySelector('.popup__container').addEventListener('submit', this._submitEvent);
     }
-    setEventListeners() {
-        super.setEventListeners();
-        this._popup.querySelector('.popup__button').addEventListener('click', (evt) => {
-            evt.preventDefault()
-            this._handleDeleteButton(this._card)
-        })
-    }
-    open(card) {
-        super.open();
+    setCard(card, cardClass) {
         this._card = card;
+        this._cardClass = cardClass;
     }
 }

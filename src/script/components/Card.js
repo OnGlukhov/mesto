@@ -34,14 +34,6 @@ export class Card {
     }
 
 
-
-    _clickRemoveButton() {
-        this._handleRemoveCard({
-            cardElement: this._element,
-            cardId: this._data._id
-        })
-    }
-
     _clickButtonLike() {
         this._handleCardLike({
             cardId: this._data._id
@@ -72,6 +64,18 @@ export class Card {
         }
 
     }
+    handleDeleteElement() {
+        this._element.querySelector('.element__like').addEventListener('click', () => {
+            this._clickButtonLike()
+        });
+        this._element.querySelector('.element__delete').addEventListener('click', () => {
+            this._handleRemoveCard();
+        })
+        this._element.querySelector('.element__img').addEventListener('click', () => {
+            this._handleImageClick()
+        });
+        this._element.remove()
+    }
 
     // Слушатели
     _setEventListeners() {
@@ -79,7 +83,7 @@ export class Card {
             this._clickButtonLike()
         });
         this._element.querySelector('.element__delete').addEventListener('click', () => {
-            this._clickRemoveButton()
+            this._handleRemoveCard();
         })
         this._element.querySelector('.element__img').addEventListener('click', () => {
             return this._handleImageClick()

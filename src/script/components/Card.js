@@ -93,8 +93,9 @@ export class Card {
         this._element = this._getTemplate();
 
         this._element.querySelector('.element__img').src = this._link;
-        this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__title').alt = this._name;
+        this._elementTitle = this._element.querySelector('.element__title');
+        this._elementTitle.textContent = this._name;
+        this._elementTitle.alt = this._name;
 
         if (this._userData._id === this._data.owner._id) { // Если айди совпадает с ID карточки пользователя, то добавляется элемент  позволяющий удалять
             this._element.querySelector('.element__delete').classList.add('element__delete_active');

@@ -1,5 +1,5 @@
 import './index.css';
-import { options, FormValidator } from '../script/components/FormValidator.js';
+import { FormValidator } from '../script/components/FormValidator.js';
 import { Card } from '../script/components/Card.js';
 import {
     profileEditButton,
@@ -11,7 +11,8 @@ import {
     elements,
     selectorsProfile,
     avatarButton,
-    editAvatar
+    editAvatar,
+    options
 }
 from '../script/utils/constants.js';
 import Section from '../script/components/Section.js';
@@ -41,18 +42,16 @@ const api = new Api({
     }
 })
 
-let cardList
 
 // Экземпляр класса секции
 const popupDelete = new PopupWithRemove('.popup_type_delete', ({ cardElement, cardId }) => {
     api.removeCard(cardId)
         .then(() => {
-            cardElement.remove()
-        })
-        .catch((err) => console.error(err))
-        .finally(() => {
+            popupDelete.buttonName('Удаление...');
+            cardElement.remove();
             popupDelete.close()
         })
+        .catch((err) => console.error(err))
 })
 popupDelete.setEventListeners()
 
@@ -63,6 +62,7 @@ function placeCard(data, userData, userDataID) {
             popupPicture.open(data)
         },
         handleRemoveCard: ({ cardElement, cardId }) => {
+            popupDelete.buttonName('Да');
             popupDelete.open({ cardElement, cardId })
         },
         handleCardLike: ({ cardId }) => {
@@ -87,46 +87,48 @@ function placeCard(data, userData, userDataID) {
 const avatarPopup = new PopupWithForm({
     popupSelector: '.popup_type_avatar',
     formSubmit: (data) => {
-        avatarPopup.textContent = 'Трататата'
+        avatarPopup.buttonName('Загрузка...');
         api.addAvatar(data)
             .then((data) => {
-                userInfo.setUserAvatar(data.avatar)
-                    // avatarPopup.close()
-            })
-            .catch((err) => console.error(err))
-            .finally(() => {
+                userInfo.setUserAvatar(data.avatar);
                 avatarPopup.close();
             })
+            .catch((err) => console.error(err))
     }
 })
 avatarPopup.setEventListeners()
 avatarButton.addEventListener('click', () => {
-    avatarPopup.open()
+    avatarPopup.buttonName('Сохранить');
+    avatarPopup.open();
+    avatarValidation.clear()
 })
+
+
 
 // редактирование профиля
 const editPop = new PopupWithForm({
     popupSelector: ".popup_type_edit",
     formSubmit: (data) => {
+        editPop.buttonName('Сохранение...');
         api.patchProfileInfo(data)
             .then((data) => {
                 userInfo.setUserInfo(data)
 
+                editPop.close();
             })
             .catch((err) => console.error(err))
-            .finally(() => {
-                editPop.close()
-            })
-    },
+    }
 });
 
 editPop.setEventListeners();
+
 // обработчик события профиль
 profileEditButton.addEventListener('click', () => {
-
+    editPop.buttonName('Сохранить');
     popupAuthor.value = userInfo.getUserInfo().name;
     popupProfession.value = userInfo.getUserInfo().job;
-    editPop.open();
+    editProfileValidation.clear()
+    editPop.open()
 });
 
 // Данные карточки, профиль
@@ -134,7 +136,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     .then(([cardData, userData]) => {
         userInfo.setUserInfo(userData);
         userInfo.setUserAvatar(userData.avatar);
-        cardList = new Section({
+        const cardList = new Section({
             items: cardData,
             renderer: (data) => {
                 const cardElement = placeCard(data, userData);
@@ -142,23 +144,31 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
             }
         }, elements)
         cardList.renderer()
-            // Добавление карточки
+
+        // Добавление карточки
         const addPopup = new PopupWithForm({
             popupSelector: ".popup_type_add",
             formSubmit: (data) => {
+
+                addPopup.buttonName('Загрузка...');
+
                 api.newCardAdd(data)
                     .then(data => {
                         const newcard = placeCard(data, userData, userData._id);
                         cardList.addItem(newcard);
-                    })
-                    .catch((err) => console.error(err))
-                    .finally(() => {
                         addPopup.close();
                     })
+                    .catch((err) => console.error(err))
             }
         });
         addPopup.setEventListeners();
         profileAddButton.addEventListener("click", () => {
             addPopup.open();
+            addPopup.buttonName('Сохранить');
+            addElementValidation.clear()
         });
+
+
+
     })
+    .catch((err) => console.error(err))

@@ -42,28 +42,29 @@ const api = new Api({
     }
 })
 
-const openDeletePopup = function(card, cardClass) {
-    popupDelete.setCard(card, cardClass);
+const openDeletePopup = function(data, card) {
+    popupDelete.setCard(data, card);
 
     popupDelete.open();
     popupDelete.buttonName('Да');
 }
 const popupDelete = new PopupWithRemove({
-    handleDeleteButton: (card, cardClass) => {
-        cardDelete(card, cardClass);
+    handleDeleteButton: (data, card) => {
+        cardDelete(data, card);
     }
 }, '.popup_type_delete');
 
 
-const cardDelete = function(cardId, cardClass) {
-    api.removeCard(cardId._id)
+const cardDelete = function(data, card) {
+    popupDelete.buttonName('Удаление...')
+    api.removeCard(data._id)
         .then(() => {
-            cardClass.handleDeleteElement();
+            card.handleDeleteElement();
             popupDelete.close();
         })
         .catch((err) => console.error(err))
         .finally(() => {
-            popupDelete.buttonName('Удаление...');
+            popupDelete.buttonName('Да');;
         });
 }
 
@@ -107,13 +108,12 @@ const avatarPopup = new PopupWithForm({
             })
             .catch((err) => console.error(err))
             .finally(() => {
-                avatarPopup.buttonName('Загрузка...');
+                avatarPopup.buttonName('Сохранить');
             })
     }
 })
 avatarPopup.setEventListeners()
 avatarButton.addEventListener('click', () => {
-    avatarPopup.buttonName('Сохранить')
     avatarPopup.open();
     avatarValidation.clear()
 })
@@ -132,7 +132,7 @@ const editPop = new PopupWithForm({
             })
             .catch((err) => console.error(err))
             .finally(() => {
-                editPop.buttonName('Сохранение...');
+                editPop.buttonName('Сохранить');
             })
     }
 });
@@ -141,7 +141,6 @@ editPop.setEventListeners();
 
 // обработчик события профиль
 profileEditButton.addEventListener('click', () => {
-    editPop.buttonName('Сохранить');
     popupAuthor.value = userInfo.getUserInfo().name;
     popupProfession.value = userInfo.getUserInfo().job;
     editProfileValidation.clear()
@@ -175,13 +174,12 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
                     })
                     .catch((err) => console.error(err))
                     .finally(() => {
-                        addPopup.buttonName('Загрузка...');
+                        addPopup.buttonName('Сохранить');
                     })
             }
         });
         addPopup.setEventListeners();
         profileAddButton.addEventListener("click", () => {
-            addPopup.buttonName('Сохранить');
             addPopup.open();
             addElementValidation.clear()
         });

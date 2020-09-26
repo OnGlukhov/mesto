@@ -21,7 +21,7 @@ JavaScript, ООП, HTML, CSS, Webpack, Api, Git
 ## Инструкция по развертке
 Клонируйте репозиторий:
 
-`git clone https://oleg-glukhov1.github.io/mesto.git`
+`git clone https://oleg-glukhov1.github.io/mesto`
 
 Для установки необходимых пакетов выполните
 

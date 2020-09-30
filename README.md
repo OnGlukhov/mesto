@@ -31,3 +31,6 @@ npm i
 * запустить в development режиме: npm run dev;
 * собрать проект для production: npm run build;
 * развернуть проект на GitHub pages: npm run deploy.
+
+## Планы по доработке
+Разработка серверной часть

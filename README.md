@@ -17,7 +17,7 @@ JavaScript, ООП, HTML, CSS, Webpack, Api, Git
 * Взаимодействие сайта с сервером.
 
 Проект можно посмотреть [здесь](https://oleg-glukhov1.github.io/mesto/)
-#Инструкция по развертке
+# Инструкция по развертке
 Клонируйте репозиторий:
 
 git clone https://github.com/Belodubrovskii/mesto.git

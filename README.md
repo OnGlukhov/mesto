@@ -17,3 +17,17 @@ JavaScript, ООП, HTML, CSS, Webpack, Api, Git
 * Взаимодействие сайта с сервером.
 
 Проект можно посмотреть [здесь](https://oleg-glukhov1.github.io/mesto/)
+#Инструкция по развертке
+Клонируйте репозиторий:
+
+git clone https://github.com/Belodubrovskii/mesto.git
+
+Для установки необходимых пакетов выполните
+
+npm i
+
+Запуск:
+
+* запустить в development режиме: npm run dev;
+* собрать проект для production: npm run build;
+* развернуть проект на GitHub pages: npm run deploy.
